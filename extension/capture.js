@@ -1,5 +1,9 @@
 // Refresh Undo content script: DOM save-states + keyboard-refresh guard.
 (() => {
+  // Guard against double injection (manifest content_script + onInstalled executeScript)
+  if (window.__refreshUndoLoaded) return;
+  window.__refreshUndoLoaded = true;
+
   const MAX_BYTES = 25 * 1024 * 1024;
   const isYouTube = /(^|\.)youtube\.com$/.test(location.hostname);
   let guardAll = false;
@@ -39,6 +43,9 @@
     const refreshKey = e.key === 'F5' ||
       ((e.ctrlKey || e.metaKey) && (e.key === 'r' || e.key === 'R'));
     if (!refreshKey) return;
+    // If this script was orphaned by an extension reload, stay inert so we
+    // never block a refresh we can't replace with a new tab.
+    if (!(chrome.runtime && chrome.runtime.id)) return;
     if (!(isYouTube || guardAll)) {
       grab('pre-refresh'); // not guarded here: let the reload happen, but save state first
       return;

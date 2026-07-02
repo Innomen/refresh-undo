@@ -73,6 +73,17 @@ async function addSnap(data, sender) {
   await prune(d);
 }
 
+// Inject the content script into tabs that were already open when the
+// extension was installed/reloaded, so protection doesn't wait for a reload.
+chrome.runtime.onInstalled.addListener(async () => {
+  const tabs = await chrome.tabs.query({ url: ['http://*/*', 'https://*/*'] });
+  for (const t of tabs) {
+    try {
+      await chrome.scripting.executeScript({ target: { tabId: t.id }, files: ['capture.js'] });
+    } catch (e) {} // some pages (web store, PDFs) refuse injection; fine
+  }
+});
+
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   (async () => {
     if (msg.type === 'snapshot') {
