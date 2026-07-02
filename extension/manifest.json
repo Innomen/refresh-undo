@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Refresh Undo",
+  "version": "1.0.0",
+  "description": "Save-states pages before refresh/navigation, and turns keyboard refresh into 'open fresh copy in a new tab' so the original tab is never destroyed. Restore lost pages with Ctrl+Shift+Z or the toolbar popup.",
+  "permissions": ["storage", "unlimitedStorage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["capture.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": { "default_popup": "popup.html", "default_title": "Refresh Undo — page snapshots" },
+  "commands": {
+    "restore-last": {
+      "suggested_key": { "default": "Ctrl+Shift+Z" },
+      "description": "Reopen the latest snapshot for this tab"
+    }
+  }
+}

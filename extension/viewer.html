@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Snapshot</title>
+<style>
+  body { margin: 0; font: 13px system-ui, sans-serif; display: flex; flex-direction: column; height: 100vh; }
+  #bar { background: #1a1a2e; color: #eee; padding: 8px 12px; flex: none; line-height: 1.5; }
+  #bar a { color: #8ab4f8; }
+  #frame { border: 0; flex: 1; width: 100%; }
+</style>
+</head>
+<body>
+<div id="bar">Loading snapshot…</div>
+<iframe id="frame" sandbox="allow-same-origin"></iframe>
+<script src="viewer.js"></script>
+</body>
+</html>

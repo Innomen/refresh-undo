@@ -1,0 +1,8 @@
+[Unit]
+Description=Archive YouTube videos opened in Brave (yt-dashcam)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/yt-dashcam.sh
+Nice=10
+IOSchedulingClass=idle

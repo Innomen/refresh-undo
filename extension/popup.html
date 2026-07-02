@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 12px system-ui, sans-serif; width: 440px; max-height: 540px; overflow-y: auto; margin: 0; padding: 10px; }
+  label { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+  h4 { margin: 10px 0 4px; }
+  .snap { padding: 6px; border-bottom: 1px solid #ddd; cursor: pointer; }
+  .snap:hover { background: #eef; }
+  .t { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .m { color: #666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .empty { color: #888; padding: 8px 0; }
+</style>
+</head>
+<body>
+<label><input type="checkbox" id="guardAll"> Keyboard refresh opens a new tab on ALL sites (always on for YouTube)</label>
+<div id="list" class="empty">Loading…</div>
+<script src="popup.js"></script>
+</body>
+</html>
