@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Refresh Undo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Save-states pages before refresh/navigation, and turns keyboard refresh into 'open fresh copy in a new tab' so the original tab is never destroyed. Restore lost pages with Ctrl+Shift+Z or the toolbar popup.",
   "permissions": [
     "scripting",

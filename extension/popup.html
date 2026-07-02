@@ -3,8 +3,13 @@
 <head>
 <meta charset="utf-8">
 <style>
-  body { font: 12px system-ui, sans-serif; width: 440px; max-height: 540px; overflow-y: auto; margin: 0; padding: 10px; }
-  label { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+  body { font: 12px system-ui, sans-serif; width: 440px; max-height: 540px; overflow-y: auto; margin: 0; padding: 12px; }
+  #restore { display: block; width: 100%; padding: 10px; margin-bottom: 10px; font-size: 13px; font-weight: 600;
+             background: #1a1a2e; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+  #restore:disabled { background: #ccc; color: #666; cursor: default; }
+  #restoreMeta { color: #666; margin: -6px 0 10px; text-align: center; }
+  label { display: flex; gap: 6px; align-items: center; margin-bottom: 10px; }
+  details > summary { cursor: pointer; color: #666; margin-bottom: 4px; }
   h4 { margin: 10px 0 4px; }
   .snap { padding: 6px; border-bottom: 1px solid #ddd; cursor: pointer; }
   .snap:hover { background: #eef; }
@@ -14,8 +19,13 @@
 </style>
 </head>
 <body>
+<button id="restore" disabled>Restore this page</button>
+<div id="restoreMeta"></div>
 <label><input type="checkbox" id="guardAll"> Keyboard refresh opens a new tab on ALL sites (always on for YouTube)</label>
-<div id="list" class="empty">Loading…</div>
+<details>
+  <summary>All snapshots</summary>
+  <div id="list" class="empty">Loading…</div>
+</details>
 <script src="popup.js"></script>
 </body>
 </html>
